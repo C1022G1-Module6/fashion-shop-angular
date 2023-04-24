@@ -1,0 +1,83 @@
+<style>
+  * style {
+    margin: 0;
+    padding: 0;
+  }
+
+  .an {
+    display: block;
+    display: -webkit-box;
+    /*height: 16px*1.3*3;*/
+    font-size: 16px;
+    line-height: 1.3;
+    -webkit-line-clamp: 3; /* số dòng hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+  }
+
+</style>
+
+<div>
+  <div style="background-image: url('https://cdn.pixabay.com/photo/2015/10/09/21/12/stylish-979952_1280.jpg')">
+    <div class="container ">
+
+      <div class="row">
+        <div class="col-md-12 d-flex mt-5" style="border-bottom: #efbe29 5px solid">
+          <div class=" col-md-12">
+            <h1>TIN TỨC NỔI BẬT</h1>
+          </div>
+        </div>
+        <nav class="navbar">
+          <div class=" container-fluid">
+            <div class="navbar-brand">
+              <button [routerLink]="['/news/createNews']" type="button" class="btn btn-outline-primary">+ Thêm mới</button>
+            </div>
+
+            <div class="navbar-brand d-flex" >
+              <input #tittleSearch class="form-control me-2" type="search" placeholder="Tìm kiếm tin tức"
+                     aria-label="Search">
+              <button (click)="getAllNews(tittleSearch.value)" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="row" style="padding-left: 70px">
+        <div *ngFor="let news of listNews" class="card col-3 col-sm-3 m-2"
+             style="width: 20rem;height: 30rem;border-radius: 0%;border-bottom: 5px #efbe29 solid;">
+          <img style="margin-top: 10px;border-radius: 0%;height: 60%"
+               src="{{news.img}}"
+               class="card-img-top"
+               alt="...">
+          <div  class="card-body">
+            <h5 class="card-title an">{{news.title}}</h5>
+<!--            <p class="card-text an">{{news.content}}</p>-->
+            <strong class="card-text an" [innerHTML]="news.content"></strong>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <button [routerLink]="['/news/detailNews',news.id]" class="btn btn-outline-success" type="button">Xem tin</button>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 5%;">
+        <nav aria-label="..." class="d-flex justify-content-center text-center">
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" (click)="truoc()">Trước</button>
+            </li>
+            <li class="page-item"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item">
+              <button class="page-link" (click)="sau()">Sau</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
