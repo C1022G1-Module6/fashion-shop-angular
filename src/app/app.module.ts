@@ -15,10 +15,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import {HomeModule} from "./component/home/home.module";
+import {FooterComponent} from "./component/home/footer/footer.component";
+import {BodyComponent} from "./component/home/body/body.component";
+import {HeaderComponent} from "./component/home/header/header.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    BodyComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,7 @@ import {environment} from '../environments/environment';
     EmployeeModule,
     InvoiceModule,
     NewsModule,
+    HomeModule,
     NotificationModule,
     ProductModule,
     HttpClientModule,
