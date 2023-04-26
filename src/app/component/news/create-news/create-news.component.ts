@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {News} from '../../../model/news/news';
 import {NewsService} from '../../../service/news.service';
 
@@ -15,9 +15,10 @@ export class CreateNewsComponent implements OnInit {
   selectedImage: any = null;
   arrayPicture = 'https://archinect.imgix.net/uploads/ug/ugwcu31z3fknhdkn.jpg?fit=crop&auto=compress%2Cformat&w=1200';
   formCreateNews: FormGroup = new FormGroup({
-    title: new FormControl(),
-    content: new FormControl(),
-    img: new FormControl(),
+    title: new FormControl("",[Validators.required,Validators.minLength(10),Validators.maxLength(100)]),
+    content: new FormControl("",[Validators.required,Validators.minLength(100),Validators.maxLength(1000)]),
+    img: new FormControl(""),
+    nameImg: new FormControl("",[Validators.required,Validators.pattern("\.(jpg|png)$")]),
     employee: new FormControl()
   });
 

@@ -17,6 +17,29 @@
     margin-top: 10px;
   }
 
+  @media (min-width: 1024px) {
+    img {
+      height: 10rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    img {
+      height: 10rem;
+    }
+  }
+
+  @media (min-width: 600px) {
+    img {
+      height: 10rem;
+    }
+  }
+
+  @media (min-width: 375px) {
+    img {
+      height: 10rem;
+    }
+  }
 </style>
 
 <div>
@@ -25,39 +48,63 @@
 
       <div class="row">
         <div class="col-md-12 d-flex mt-5" style="border-bottom: #efbe29 5px solid">
-          <div class=" col-md-12">
+          <div class=" col-12">
             <h1>TIN TỨC NỔI BẬT</h1>
           </div>
         </div>
-        <nav class="navbar">
+        <nav class="navbar ">
           <div class=" container-fluid">
             <div class="navbar-brand">
-              <button [routerLink]="['/news/createNews']" type="button" class="btn btn-outline-primary">+ Thêm mới</button>
+              <button [routerLink]="['/news/createNews']" type="button" class="btn btn-outline-primary">+ Thêm mới
+              </button>
             </div>
 
-            <div class="navbar-brand d-flex" >
+            <div class="navbar-brand d-flex">
               <input #tittleSearch class="form-control me-2" type="search" placeholder="Tìm kiếm tin tức"
                      aria-label="Search">
-              <button (click)="getAllNews(tittleSearch.value)" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+              <button (click)="getAllNews(tittleSearch.value)" class="btn btn-outline-success" type="submit">Tìm kiếm
+              </button>
             </div>
           </div>
         </nav>
       </div>
+      <!--<div class="container">-->
+      <!--      <div class="row" style="padding-left: 70px;cursor: pointer">-->
+      <!--        <div *ngFor="let news of listNews" class="card col-12 col-sm-6 col-md-4 col-lg-3" [routerLink]="['/news/detailNews',news.id]"-->
+      <!--             style="width: 20rem;height: 30rem;border-radius: 0%;border-bottom: 5px #efbe29 solid;">-->
+      <!--          <div style="height: 60%; position: relative">-->
+      <!--            <img style="width: 100%;-->
+      <!--              height: 100%;-->
+      <!--              object-fit: cover;-->
+      <!--              object-position: center;margin-top: 10px;border-radius: 0%;"-->
+      <!--                 src="{{news.img}}"-->
+      <!--                 class="card-img-top"-->
+      <!--                 alt="...">-->
+      <!--          </div>-->
 
-      <div class="row" style="padding-left: 70px">
-        <div *ngFor="let news of listNews" class="card col-3 col-sm-3 m-2"
-             style="width: 20rem;height: 30rem;border-radius: 0%;border-bottom: 5px #efbe29 solid;">
-          <img style="margin-top: 10px;border-radius: 0%;height: 60%"
-               src="{{news.img}}"
-               class="card-img-top"
-               alt="...">
-          <div  class="card-body">
-            <h5 class="card-title an">{{news.title}}</h5>
-<!--            <p class="card-text an">{{news.content}}</p>-->
-            <strong class="card-text an" [innerHTML]="news.content"></strong>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <button [routerLink]="['/news/detailNews',news.id]" class="btn btn-outline-success" type="button">Xem tin</button>
+      <!--          <div  class="card-body" style="max-height: 40%;position: relative">-->
+      <!--            <h5 class="card-title an">{{news.title}}</h5>-->
+      <!--            <p style="margin-bottom: 0" class="card-text an" [innerHTML]="news.content"></p>-->
+      <!--            <p  class="card-text"><small style="float: right" class="text-muted">23-12-2023</small></p>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--</div>-->
+
+
+      <div class="container">
+        <div class="row">
+          <div style="cursor: pointer" *ngFor="let news of listNews" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card" [routerLink]="['/news/detailNews',news.id]">
+              <img class="card-img-top" src="{{news.img}}" alt="...">
+              <div class="card-body">
+                <h5 class="card-title an">{{news.title}}</h5>
+                <p class="card-text an" [innerHTML]="news.content"></p>
+                <p class="card-text"><small style="float: right" class="text-muted">24-12-2023</small></p>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
       <div class="row" style="margin-top: 5%;">
@@ -79,5 +126,4 @@
 
 
   </div>
-
 </div>
