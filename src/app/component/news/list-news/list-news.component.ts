@@ -22,6 +22,7 @@ export class ListNewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllNews(this.titleSearch);
+
   }
 
   getAllNews(titleSearch: string) {
@@ -31,6 +32,8 @@ export class ListNewsComponent implements OnInit {
       this.totalPage = next.totalPages;
       this.page = next.number;
       this.size = next.size;
+
+      console.log(this.listNews);
     });
   }
 

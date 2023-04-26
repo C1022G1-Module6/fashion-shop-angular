@@ -5,4 +5,5 @@ export interface INewsDTO {
   imgName?:string;
   title?: string;
   employeeId?: number;
+  dateTime?: string;
 }
