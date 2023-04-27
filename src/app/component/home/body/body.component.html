@@ -17,38 +17,38 @@
   </button>
 </div>
 
-<!--<br>
-    <div  class="container-fluid">
-      <button style="width: 4rem;padding: 1rem;margin-top: 50px ;margin-left: 300px" type="button" class="btn btn-info" *ngFor="let item of productTypeList" (click)="search(item.name)">{{item.name}}</button>
-    </div>
-<br>
-  <div class="col-md-4"></div>
-<div class="col-md-4">
-  <div class="search">
-    <div class="d-flex">
-      <input class="form-control me-2" #name type="search" placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
-      <button class="btn btn-outline-success"  type="button" (click)="search(name.value)">Search</button>
-    </div>
-  </div>
-</div>-->
-
-
-
 
 <div class="col-md-12 d-flex mt-5" style="border-bottom: #efbe29 5px solid">
   <div class=" col-md-12">
-    <h1 style="text-align: center">DANH SÁCH SẢN PHẨM</h1>
+    <h1 style ="margin-left: 50px">DANH SÁCH SẢN PHẨM</h1>
   </div>
 </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <form class="d-flex">
+        <input class="form-control me-4"  style="margin-left: 800px; width: 300px" #name type="search" placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
+        <button class="btn btn-outline-success"  type="button" (click)="search(name.value)">Tìm kiếm</button>
+      </form>
+    </div>
+  </div>
+</nav>
 <div>
   <nav class="navbar">
-    <div class=" container-fluid">
-      <div class="navbar-brand">
-        <button style="width: 4rem;padding: 1rem;margin-top: 50px ;margin-left: 100px" type="button" class="btn btn-info" *ngFor="let item of productTypeList" (click)="search(item.name)">{{item.name}}</button>
-      </div>
-      <div class="navbar-brand d-flex" >
-        <input class="form-control me-4" #name type="search" placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
-        <button class="btn btn-outline-success"  type="button" (click)="search(name.value)">Search</button>
+    <div class=" container py-5">
+      <div class="navbar-brand wrapper">
+        <button style="margin: 1px; margin-left: 50px" type="button"  *ngFor="let item of productTypeList" (click)="search(item.name)">
+           <a *ngIf="item.id == 1" ><img src="../../../../assets/img/8339c19d-1fe8-43fc-8a0d-474c9de17ca7.png" height="106" width="172"/></a>
+          <a *ngIf="item.id == 2" ><img src="../../../../assets/img/342843e8-9b96-486c-a45b-55884d0fcd92.png" height="106" width="172"/></a>
+          <a *ngIf="item.id == 3" ><img src="../../../../assets/img/tải xuống (1).jpg" height="106" width="150"/></a>
+          <a *ngIf="item.id == 4" ><img src="../../../../assets/img/Capture32887.jpg" height="106" width="150"/></a>
+          <a *ngIf="item.id == 5" ><img src="../../../../assets/img/tải xuống (2).jpg" height="106" width="150"/></a>
+          <a *ngIf="item.id == 6" ><img src="../../../../assets/img/hb0181_cre_1000x1000_4536849088.jpg" height="106" width="150"/></a>
+          <a *ngIf="item.id == 7" ><img src="../../../../assets/img/mu-coi-bo-doi-4_252e3e575f14450ca75f80daee483d1b_master.jpg" height="106" width="150"/></a>
+          <a *ngIf="item.id == 8" ><img src="../../../../assets/img/75RoLV_simg_b5529c_250x250_maxb.jpg" height="106" width="150"/></a>
+        </button>
       </div>
     </div>
   </nav>
@@ -56,7 +56,7 @@
 <br>
 <div class="product">
   <div class="wrapper">
-    <ul class="products">
+    <ul class="container-fluid products">
       <li *ngFor="let product of productList">
         <div class="product-item">
           <div class="product-top">

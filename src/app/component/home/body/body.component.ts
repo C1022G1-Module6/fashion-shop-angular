@@ -26,6 +26,7 @@ export class BodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.productTypeService.getAllProductType().subscribe(data => {
+      console.log(data)
       this.productTypeList = data;
     })
 
@@ -37,7 +38,7 @@ export class BodyComponent implements OnInit {
       // @ts-ignore
       this.productList = data.content;
       console.log(data);
-     // @ts-ignore
+      // @ts-ignore
       this.teamPage = data;
     })
   }
@@ -61,6 +62,5 @@ export class BodyComponent implements OnInit {
     this.productList = [];
     this.getAll(this.page);
   }
-
 
 }
