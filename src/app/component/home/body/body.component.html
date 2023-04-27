@@ -1,0 +1,136 @@
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="https://yody.vn/Combo-than-thanh"> <img src="https://bizweb.dktcdn.net/100/438/408/themes/904142/assets/ldp_banner-25.jpg?1681801559897"   class="d-block w-100" alt="..."></a>
+    </div>
+    <div class="carousel-item">
+      <a href="https://fm.com.vn/sieu-sale"><img src="https://bizweb.dktcdn.net/100/438/408/files/polopc.jpg?v=1657939410701" class="d-block w-100" alt="..."></a>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!--<br>
+    <div  class="container-fluid">
+      <button style="width: 4rem;padding: 1rem;margin-top: 50px ;margin-left: 300px" type="button" class="btn btn-info" *ngFor="let item of productTypeList" (click)="search(item.name)">{{item.name}}</button>
+    </div>
+<br>
+  <div class="col-md-4"></div>
+<div class="col-md-4">
+  <div class="search">
+    <div class="d-flex">
+      <input class="form-control me-2" #name type="search" placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
+      <button class="btn btn-outline-success"  type="button" (click)="search(name.value)">Search</button>
+    </div>
+  </div>
+</div>-->
+
+
+
+
+<div class="col-md-12 d-flex mt-5" style="border-bottom: #efbe29 5px solid">
+  <div class=" col-md-12">
+    <h1 style="text-align: center">DANH SÁCH SẢN PHẨM</h1>
+  </div>
+</div>
+<div>
+  <nav class="navbar">
+    <div class=" container-fluid">
+      <div class="navbar-brand">
+        <button style="width: 4rem;padding: 1rem;margin-top: 50px ;margin-left: 100px" type="button" class="btn btn-info" *ngFor="let item of productTypeList" (click)="search(item.name)">{{item.name}}</button>
+      </div>
+      <div class="navbar-brand d-flex" >
+        <input class="form-control me-4" #name type="search" placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
+        <button class="btn btn-outline-success"  type="button" (click)="search(name.value)">Search</button>
+      </div>
+    </div>
+  </nav>
+</div>
+<br>
+<div class="product">
+  <div class="wrapper">
+    <ul class="products">
+      <li *ngFor="let product of productList">
+        <div class="product-item">
+          <div class="product-top">
+            <a href="" class="product-thumb">
+              <img [src]="product.img">
+            </a>
+          </div>
+        </div>
+        <div class="product-info">
+          <a href="" class="product-cart"></a>
+          <a href="" class="product-name">{{product.name | titlecase | slice: 0 :20 }}<span
+            style="background-color: lightgray;color: #007bff;font-weight: 600"
+            *ngIf="product.name.length > 20">.....</span></a>
+          <div class="product-price">{{product.sellingPrice | currency: "VND"}}</div>
+          <div class="product-price">{{product.code}}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+  <div style="margin-top: 12px">
+  <div *ngIf="teamPage" class="d-flex justify-content-center" id="last-row">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">
+          <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>
+        </li>
+        <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">
+          <a role="button" class="page-link" (click)="changePage(teamPage.number - 1)"><</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number - 3 > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 4)">{{teamPage.number - 3}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number - 2 > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 3)">{{teamPage.number - 2}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number - 1 > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 2)">{{teamPage.number - 1}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number > 0">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number - 1)">{{teamPage.number}}</a>
+        </li>
+        <li class="page-item active"><a class="page-link">{{teamPage.number + 1}}</a></li>
+        <li class="page-item" *ngIf="teamPage.number + 2 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 1)">{{teamPage.number + 2}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number + 3 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 2)">{{teamPage.number + 3}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number + 4 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 3)">{{teamPage.number + 4}}</a>
+        </li>
+        <li class="page-item" *ngIf="teamPage.number + 5 <= teamPage.totalPages">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 4)">{{teamPage.number + 5}}</a>
+        </li>
+        <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.number + 1)">></a>
+        </li>
+        <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">
+          <a role="button" class="page-link"
+             (click)="changePage(teamPage.totalPages - 1)">
+            Trang cuối
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
