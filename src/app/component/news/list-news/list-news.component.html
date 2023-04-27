@@ -43,7 +43,8 @@
 </style>
 
 <div>
-  <div style="background-image: url('https://cdn.pixabay.com/photo/2015/10/09/21/12/stylish-979952_1280.jpg')">
+  <div >
+<!--    style="background-image: url('https://cdn.pixabay.com/photo/2015/10/09/21/12/stylish-979952_1280.jpg')">-->
     <div class="container ">
 
       <div class="row">
@@ -60,42 +61,18 @@
             </div>
 
             <div class="navbar-brand d-flex">
-              <input #tittleSearch class="form-control me-2" type="search" placeholder="Tìm kiếm tin tức"
+              <input #element (change)="getAllNews(element.value,teamPage.number)" class="form-control me-2" type="search" placeholder="Tìm kiếm tin tức"
                      aria-label="Search">
-              <button (click)="getAllNews(tittleSearch.value)" class="btn btn-outline-success" type="submit">Tìm kiếm
+              <button (click)="getAllNews(element.value,teamPage.number)" class="btn btn-outline-success" type="submit">Tìm kiếm
               </button>
             </div>
           </div>
         </nav>
       </div>
-      <!--<div class="container">-->
-      <!--      <div class="row" style="padding-left: 70px;cursor: pointer">-->
-      <!--        <div *ngFor="let news of listNews" class="card col-12 col-sm-6 col-md-4 col-lg-3" [routerLink]="['/news/detailNews',news.id]"-->
-      <!--             style="width: 20rem;height: 30rem;border-radius: 0%;border-bottom: 5px #efbe29 solid;">-->
-      <!--          <div style="height: 60%; position: relative">-->
-      <!--            <img style="width: 100%;-->
-      <!--              height: 100%;-->
-      <!--              object-fit: cover;-->
-      <!--              object-position: center;margin-top: 10px;border-radius: 0%;"-->
-      <!--                 src="{{news.img}}"-->
-      <!--                 class="card-img-top"-->
-      <!--                 alt="...">-->
-      <!--          </div>-->
-
-      <!--          <div  class="card-body" style="max-height: 40%;position: relative">-->
-      <!--            <h5 class="card-title an">{{news.title}}</h5>-->
-      <!--            <p style="margin-bottom: 0" class="card-text an" [innerHTML]="news.content"></p>-->
-      <!--            <p  class="card-text"><small style="float: right" class="text-muted">23-12-2023</small></p>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--</div>-->
-
-
       <div class="container">
         <div class="row">
-          <div style="cursor: pointer" *ngFor="let news of listNews" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card" [routerLink]="['/news/detailNews',news.id]">
+          <div  *ngFor="let news of listNews" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" style="cursor: pointer;">
+            <div class="card" [routerLink]="['/news/detailNews',news.id]" style="border-radius: 0%">
               <img class="card-img-top" src="{{news.img}}" alt="...">
               <div class="card-body">
                 <h5 class="card-title an">{{news.title}}</h5>

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NewsService} from '../../../service/news.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {News} from '../../../model/news/news';
-import {INewsDTO} from "../../../dto/i-news-d-t-o";
+import {INewsDTO} from '../../../dto/i-news-d-t-o';
 
 @Component({
   selector: 'app-display',
@@ -38,7 +38,7 @@ export class DisplayComponent implements OnInit {
   getAllRelatedNews() {
     this.newsService.getAllRelatedNews().subscribe(next => {
       this.listRelatedNews = next;
-    })
+    });
   }
 
 

@@ -4,7 +4,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {News} from '../../../model/news/news';
 import {NewsService} from '../../../service/news.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-create-news',
@@ -14,15 +16,27 @@ import {Router} from "@angular/router";
 export class CreateNewsComponent implements OnInit {
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined;
   selectedImage: any = null;
-  regexNameImg = "\.(jpg|png)$/i";
+  regexNameImg = '\.(jpg|png)$/i';
   arrayPicture = 'https://archinect.imgix.net/uploads/ug/ugwcu31z3fknhdkn.jpg?fit=crop&auto=compress%2Cformat&w=1200';
   formCreateNews: FormGroup = new FormGroup({
-    title: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
-    content: new FormControl("", [Validators.required, Validators.minLength(100), Validators.maxLength(1000)]),
+    title: new FormControl('',
+      [Validators.required, Validators.minLength(10), Validators.maxLength(200)]
+    ),
+    content: new FormControl('',
+      [Validators.required, Validators.minLength(100), Validators.maxLength(5000)]
+    ),
     img: new FormControl(),
-    nameImg: new FormControl("", [Validators.required,Validators.pattern(this.regexNameImg)]),
+    nameImg: new FormControl('',
+      [Validators.required]
+    ),
     employee: new FormControl()
   });
+
+  errCreate: any = {
+    errTitle: '',
+    errNameImg: '',
+    errContent: ''
+  };
 
 
   constructor(private storage: AngularFireStorage,
@@ -73,7 +87,24 @@ export class CreateNewsComponent implements OnInit {
       console.log(news);
       this.newsService.addNews(news).subscribe(next => {
         this.formCreateNews.reset();
-        this.router.navigateByUrl("news/listNews");
+        Swal.fire({
+          icon: 'success',
+          title: 'Thêm mới thành công',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.router.navigateByUrl('news/listNews');
+      }, er => {
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < er.error.length; i++) {
+          if (er.error[i].field === 'title') {
+            this.errCreate.errTitle = er.error[i].defaultMessage;
+          } else if (er.error[i].field === 'nameImg') {
+            this.errCreate.errNameImg = er.error[i].defaultMessage;
+          } else if (er.error[i].field === 'content') {
+            this.errCreate.errContent = er.error[i].defaultMessage;
+          }
+        }
       });
     }
 

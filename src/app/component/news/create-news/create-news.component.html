@@ -20,16 +20,18 @@
                 <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('required') && formCreateNews.controls.title.touched">Nhập tiêu đề</p>
                 <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('minlength') && formCreateNews.controls.title.touched">Tiêu đề ít nhất 10 kí tự</p>
                 <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('maxlength') && formCreateNews.controls.title.touched">Tiêu đề không quá 100 kí tự</p>
+                <p style="color: red">{{errCreate.errTitle}}</p>
               </div>
 
               <div style="height: 100px" class="row mt-3 form-group">
                 <div class="col-8">
                   <label for="score" class="h6">Hình ảnh(<span style="color: red">*</span>):</label>
 
-                  <input #uploadFile (change)="uploadFileImg()" formControlName="nameImg" type="text" id="score" class="form-control"
+                  <input #uploadFile (change)="uploadFileImg()" formControlName="nameImg" type="file" id="score" class="form-control"
                          name="score">
                   <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('required') && formCreateNews.controls.nameImg.touched">Chọn ảnh</p>
                   <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('pattern') && formCreateNews.controls.nameImg.touched">Ảnh sai định dạng</p>
+                  <p style="color: red">{{errCreate.errNameImg}}</p>
 
                 </div>
                 <div class="col-4" style="position: relative">
@@ -54,6 +56,8 @@
                   <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('required') && formCreateNews.controls.content.touched">Nhập nội dung</p>
                   <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('minlength') && formCreateNews.controls.content.touched">Nội dung ít nhất 100 kí tự</p>
                   <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('maxlength') && formCreateNews.controls.content.touched">Nội dung không quá 1000 kí tự</p>
+                  <p style="color: red">{{errCreate.errContent}}</p>
+
                 </div>
               </div>
 
