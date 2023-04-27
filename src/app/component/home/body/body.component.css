@@ -63,7 +63,6 @@ ul.products {
   list-style: none;
   justify-content: center;
   width: 100%;
-  margin-left: 120px;
   margin-bottom: 0;
 
 }
@@ -238,6 +237,7 @@ table th , td {
 .product {
   background-color: lightgray;
   margin-left: 0;
+
 }
 a span {
   color: black;

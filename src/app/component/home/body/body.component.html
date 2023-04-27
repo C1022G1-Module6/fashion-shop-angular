@@ -16,8 +16,6 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
-
 <div class="col-md-12 d-flex mt-5" style="border-bottom: #efbe29 5px solid">
   <div class=" col-md-12">
     <h1 style ="margin-left: 50px">DANH SÁCH SẢN PHẨM</h1>
@@ -54,9 +52,9 @@
   </nav>
 </div>
 <br>
-<div class="product">
+<div class="container-md">
   <div class="wrapper">
-    <ul class="container-fluid products">
+    <ul class="products">
       <li *ngFor="let product of productList">
         <div class="product-item">
           <div class="product-top">
@@ -77,6 +75,8 @@
     </ul>
   </div>
 </div>
+
+
   <div style="margin-top: 12px">
   <div *ngIf="teamPage" class="d-flex justify-content-center" id="last-row">
     <nav aria-label="Page navigation example">
