@@ -8,6 +8,6 @@ export interface Product {
   name?: string;
   qrImg?: string;
   quantity?: number;
-  selling_price?: number;
+  sellingPrice?: number;
   productType?: ProductType;
 }
