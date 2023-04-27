@@ -37,6 +37,13 @@
 </nav>
 <div>
   <nav class="navbar">
+    <div class=" container-fluid">
+      <div class="navbar-brand">
+        <button style="width: 4rem;padding: 1rem;margin-top: 50px ;margin-left: 100px" type="button" class="btn btn-info" *ngFor="let item of productTypeList" (click)="search(item.name)">{{item.name}}</button>
+      </div>
+      <div style="width: 28%" class="navbar-brand d-flex">
+        <input class="form-control me-2" #name type="search" placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
+        <button class="btn btn-outline-success"  type="button" (click)="search(name.value)">Search</button>
     <div class=" container py-5">
       <div class="navbar-brand wrapper">
         <button style="margin: 1px; margin-left: 50px" type="button"  *ngFor="let item of productTypeList" (click)="search(item.name)">
