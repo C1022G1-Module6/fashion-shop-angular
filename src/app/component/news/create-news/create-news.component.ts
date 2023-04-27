@@ -4,6 +4,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {News} from '../../../model/news/news';
 import {NewsService} from '../../../service/news.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-news',
@@ -13,18 +14,20 @@ import {NewsService} from '../../../service/news.service';
 export class CreateNewsComponent implements OnInit {
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined;
   selectedImage: any = null;
+  regexNameImg = "\.(jpg|png)$/i";
   arrayPicture = 'https://archinect.imgix.net/uploads/ug/ugwcu31z3fknhdkn.jpg?fit=crop&auto=compress%2Cformat&w=1200';
   formCreateNews: FormGroup = new FormGroup({
-    title: new FormControl("",[Validators.required,Validators.minLength(10),Validators.maxLength(100)]),
-    content: new FormControl("",[Validators.required,Validators.minLength(100),Validators.maxLength(1000)]),
-    img: new FormControl(""),
-    nameImg: new FormControl("",[Validators.required,Validators.pattern("\.(jpg|png)$")]),
+    title: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
+    content: new FormControl("", [Validators.required, Validators.minLength(100), Validators.maxLength(1000)]),
+    img: new FormControl(),
+    nameImg: new FormControl("", [Validators.required,Validators.pattern(this.regexNameImg)]),
     employee: new FormControl()
   });
 
 
   constructor(private storage: AngularFireStorage,
-              private newsService: NewsService) {
+              private newsService: NewsService,
+              private router: Router) {
   }
 
   name = 'Angular';
@@ -61,14 +64,20 @@ export class CreateNewsComponent implements OnInit {
   }
 
   createNews() {
-    const news: News = this.formCreateNews.value;
-    news.img = this.arrayPicture;
-    news.employee = {
-      id : 1
-    };
-    console.log(news);
-    this.newsService.addNews(news).subscribe(next => {
-      this.formCreateNews.reset();
-    });
+    if (this.formCreateNews.valid) {
+      const news: News = this.formCreateNews.value;
+      news.img = this.arrayPicture;
+      news.employee = {
+        id: 1
+      };
+      console.log(news);
+      this.newsService.addNews(news).subscribe(next => {
+        this.formCreateNews.reset();
+        this.router.navigateByUrl("news/listNews");
+      });
+    }
+
+
   }
+
 }

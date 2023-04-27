@@ -26,7 +26,7 @@
                 <div class="col-8">
                   <label for="score" class="h6">Hình ảnh(<span style="color: red">*</span>):</label>
 
-                  <input #uploadFile (change)="uploadFileImg()" formControlName="nameImg" type="file" id="score" class="form-control"
+                  <input #uploadFile (change)="uploadFileImg()" formControlName="nameImg" type="text" id="score" class="form-control"
                          name="score">
                   <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('required') && formCreateNews.controls.nameImg.touched">Chọn ảnh</p>
                   <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('pattern') && formCreateNews.controls.nameImg.touched">Ảnh sai định dạng</p>
@@ -58,14 +58,14 @@
               </div>
 
               <div class="d-flex justify-content-center m-2">
-                <button
+                <button routerLink="/news/listNews"
                   type="button"
                   class="btn btn-secondary"
                   style="margin-right: 5px"
                 >
                   <i class="bi bi-x-circle"></i>Hủy
                 </button>
-                <button (click)="createNews()" type="submit" class="btn btn-primary" style="margin-left: 5px">
+                <button [disabled]="!formCreateNews.valid" (click)="createNews()" type="submit" class="btn btn-primary" style="margin-left: 5px">
                   <i class="bi bi-check2-circle"></i>Thêm tin
                 </button>
               </div>
