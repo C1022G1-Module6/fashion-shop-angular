@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {INewsDTO} from '../../../dto/i-news-d-t-o';
 import {NewsService} from '../../../service/news.service';
 import {Router} from '@angular/router';
+import {ProjectJson} from "../../../model/product/project-json";
+import {ProjectJson1} from "../../../model/news/project-json1";
 
 @Component({
   selector: 'app-list-news',
@@ -11,53 +13,39 @@ import {Router} from '@angular/router';
 export class ListNewsComponent implements OnInit {
   listNews: INewsDTO [] = [];
   page = 0;
-  totalPage = 0;
   size = 0;
   titleSearch = '';
+  teamPage!: ProjectJson1;
 
-  // teamPage: any;
+
 
   constructor(private newsService: NewsService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getAllNews(this.titleSearch);
-
+    this.getAllNews(this.titleSearch,0);
   }
 
-  getAllNews(titleSearch: string) {
+  getAllNews(titleSearch: string,page: number) {
+    this.page = page;
     this.titleSearch = titleSearch;
     this.newsService.getAllNews(this.page, this.titleSearch).subscribe(next => {
+      // @ts-ignore
       this.listNews = next.content;
-      this.totalPage = next.totalPages;
-      this.page = next.number;
-      this.size = next.size;
+      console.log(next);
+      // @ts-ignore
+      this.teamPage = next;
 
       console.log(this.listNews);
     });
   }
 
-  sau() {
-    if (this.page < this.totalPage - 1) {
-      this.page++;
-      this.getAllNews(this.titleSearch);
-    }
+  changePage(page: number) {
+    this.getAllNews(this.titleSearch,page);
+
   }
 
-  truoc() {
-    if (this.page > 0) {
-      this.page--;
-      this.getAllNews(this.titleSearch);
-    }
-  }
 
-  changePage(pageNumber: number) {
-    this.page = pageNumber;
-    this.newsService.getAllNews(this.page, this.titleSearch).subscribe(next => {
-      this.listNews = next.content;
-      this.totalPage = next.totalPages;
-      this.page = next.number;
-      this.size = next.size;
-    });
-  }
+
+
 }
