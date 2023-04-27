@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from "../../../model/product/product";
-import {ProductService} from "../../../service/product.service";
-import {ProductTypeService} from "../../../service/product-type.service";
-import {ProductType} from "../../../model/product/product-type";
-import Swal from 'sweetalert2'
-import {ProjectJson} from "../../../model/product/project-json";
+import {Product} from '../../../model/product/product';
+import {ProductService} from '../../../service/product.service';
+import {ProductTypeService} from '../../../service/product-type.service';
+import {ProductType} from '../../../model/product/product-type';
+import Swal from 'sweetalert2';
+import {ProjectJson} from '../../../model/product/project-json';
 
 @Component({
   selector: 'app-body',
@@ -26,7 +26,7 @@ export class BodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.productTypeService.getAllProductType().subscribe(data => {
-      console.log(data)
+      console.log(data);
       this.productTypeList = data;
     })
 
@@ -34,13 +34,13 @@ export class BodyComponent implements OnInit {
   }
 
   getAll(page: number) {
-    this.productService.getProductALl(this.searchInput,0,page).subscribe(data=>{
+    this.productService.getProductALl(this.searchInput, 0, page).subscribe(data => {
       // @ts-ignore
       this.productList = data.content;
       console.log(data);
       // @ts-ignore
       this.teamPage = data;
-    })
+    });
   }
 
   changePage(page: number) {
@@ -48,19 +48,20 @@ export class BodyComponent implements OnInit {
   }
 
   search(name: string) {
-    if (name.length == 0) {
+    if (name.length === 0) {
       Swal.fire({
         position: 'center',
         icon: 'warning',
         title: 'Không tìm thấy sản phẩm',
         showConfirmButton: false,
         timer: 3000
-      })
+      });
     }
     this.page = 0;
     this.searchInput = name;
     this.productList = [];
     this.getAll(this.page);
   }
+
 
 }
