@@ -28,7 +28,7 @@ export class BodyComponent implements OnInit {
     this.productTypeService.getAllProductType().subscribe(data => {
       console.log(data);
       this.productTypeList = data;
-    });
+    })
 
     this.getAll(0);
   }
@@ -62,5 +62,6 @@ export class BodyComponent implements OnInit {
     this.productList = [];
     this.getAll(this.page);
   }
+
 
 }
