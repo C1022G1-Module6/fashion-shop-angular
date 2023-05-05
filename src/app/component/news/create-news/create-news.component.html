@@ -3,74 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <title>Thêm mới tin tức</title>
-</head>
-<body>
 
+</head>
+<style>
+  @media (min-width: 1024px) {
+    img {
+      height: 10rem;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .img1 {
+      height: 6rem;
+      width: 10rem;
+    }
+  }
+  @media (min-width: 375px) {
+    .img3{
+      margin-top: 2%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .img1 {
+      height: 12rem;
+      width: 16rem;
+    }
+
+    .img2 {
+      margin-bottom: 50px
+    }
+
+    .img3{
+      margin-top: 5%;
+    }
+  }
+
+
+
+</style>
+<body>
 <section>
   <div class=" py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-lg-8 col-xl-6">
+    <div class="row mx-0 d-flex justify-content-center align-items-center">
+      <div class="col-lg-12 col-xl-11">
         <div class="card rounded-3">
-          <div class="card-body" style="box-shadow: 0 0 20px 0 #253365">
-            <h1 style="background-color: #183661;color: #FFFFFF" class="mb-3 mt-3 text-center">THÊM MỚI TIN TỨC </h1>
+          <div class="" style="box-shadow: 0 0 20px 0 #253365">
+            <h1 style="background-color: #183661;color: #FFFFFF; padding: 0;margin: 0" class="mb-3 text-center ">THÊM
+              MỚI TIN TỨC </h1>
             <form [formGroup]="formCreateNews" class="px-md-4 ">
-              <div class="form-group">
+              <div class="" style="height: 80px;padding: 10px">
                 <label for="name" class="h6">Tiêu đề(<span style="color: red">*</span>):</label>
                 <input formControlName="title" type="text" id="name" class="form-control" name="name">
-                <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('required') && formCreateNews.controls.title.touched">Nhập tiêu đề</p>
-                <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('minlength') && formCreateNews.controls.title.touched">Tiêu đề ít nhất 10 kí tự</p>
-                <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('maxlength') && formCreateNews.controls.title.touched">Tiêu đề không quá 100 kí tự</p>
+                <p style="color: red"
+                   *ngIf="formCreateNews.controls.title.hasError('required') && formCreateNews.controls.title.touched">
+                  Nhập tiêu đề.</p>
+                <p style="color: red"
+                   *ngIf="formCreateNews.controls.title.hasError('minlength') && formCreateNews.controls.title.touched">
+                  Tiêu đề ít nhất 10 kí tự.</p>
+                <p style="color: red"
+                   *ngIf="formCreateNews.controls.title.hasError('maxlength') && formCreateNews.controls.title.touched">
+                  Tiêu đề không quá 100 kí tự.</p>
                 <p style="color: red">{{errCreate.errTitle}}</p>
               </div>
 
-              <div style="height: 100px" class="row mt-3 form-group">
+              <div style="height: 130px;padding: 10px; " class="row mt-3 img2">
                 <div class="col-8">
-                  <label for="score" class="h6">Hình ảnh(<span style="color: red">*</span>):</label>
+                  <div class="img3">
+                    <label for="score" class="h6">Hình ảnh(<span style="color: red">*</span>):</label>
 
-                  <input #uploadFile (change)="uploadFileImg()" formControlName="nameImg" type="file" id="score" class="form-control"
-                         name="score">
-                  <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('required') && formCreateNews.controls.nameImg.touched">Chọn ảnh</p>
-                  <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('pattern') && formCreateNews.controls.nameImg.touched">Ảnh sai định dạng</p>
-                  <p style="color: red">{{errCreate.errNameImg}}</p>
-
+                    <input #uploadFile (change)="uploadFileImg($event)" formControlName="nameImg" type="file" id="score"
+                           class="form-control"
+                           name="score">
+                    <p style="color: red"
+                       *ngIf="formCreateNews.controls.nameImg.hasError('required') && formCreateNews.controls.nameImg.touched">
+                      Chọn ảnh</p>
+                    <p style="color: red"
+                       *ngIf="formCreateNews.controls.nameImg.hasError('pattern') && formCreateNews.controls.nameImg.touched">
+                      Ảnh sai định dạng</p>
+                    <p style="color: red">{{errCreate.errNameImg}}</p>
+                  </div>
                 </div>
-                <div class="col-4" style="position: relative">
-                  <div style="width: 10rem;height: 6rem;position: absolute" class="input-group">
-                    <img style="width: 100%; height: 100%;position: absolute"
+                <div class="col-4 form-group row">
+                  <div class="input-group img1" style="margin-left: 15%">
+                    <img style="width: 100%; height: 100%;margin-right: 10%"
                          [src]="arrayPicture"
                          alt="">
                   </div>
                 </div>
+
               </div>
 
-              <div class="mt-3 form-group">
+              <div class="mt-3" style="padding: 10px">
                 <label class="h6">Nội dung(<span style="color: red">*</span>):</label>
                 <div class="input-group">
                   <!--                  <textarea name="editor1" cols="70" rows="10"></textarea>-->
-                  <ckeditor formControlName="content"
+                  <ckeditor class="form-control" formControlName="content" style="padding: 0"
                             #editor
                             id="description"
                             name="description"
                             type="divarea">
                   </ckeditor>
-                  <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('required') && formCreateNews.controls.content.touched">Nhập nội dung</p>
-                  <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('minlength') && formCreateNews.controls.content.touched">Nội dung ít nhất 100 kí tự</p>
-                  <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('maxlength') && formCreateNews.controls.content.touched">Nội dung không quá 1000 kí tự</p>
+                </div>
+                <div class="row" style="height: 25px">
+                  <p style="color: red"
+                     *ngIf="formCreateNews.controls.content.hasError('required') && formCreateNews.controls.content.touched">
+                    Nhập nội dung.</p>
+                  <p style="color: red"
+                     *ngIf="formCreateNews.controls.content.hasError('minlength') && formCreateNews.controls.content.touched">
+                    Nội dung ít nhất 100 kí tự.</p>
+                  <p style="color: red"
+                     *ngIf="formCreateNews.controls.content.hasError('maxlength') && formCreateNews.controls.content.touched">
+                    Nội dung không quá 1000 kí tự.</p>
                   <p style="color: red">{{errCreate.errContent}}</p>
-
                 </div>
               </div>
 
               <div class="d-flex justify-content-center m-2">
                 <button routerLink="/news/listNews"
-                  type="button"
-                  class="btn btn-secondary"
-                  style="margin-right: 5px"
+                        type="button"
+                        class="btn btn-secondary"
+                        style="margin-right: 5px"
                 >
-                  <i class="bi bi-x-circle"></i>Hủy
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path
+                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                  Hủy
                 </button>
-                <button [disabled]="!formCreateNews.valid" (click)="createNews()" type="submit" class="btn btn-primary" style="margin-left: 5px">
-                  <i class="bi bi-check2-circle"></i>Thêm tin
+                <button  (click)="createNews()" type="submit" class="btn btn-primary"
+                        style="margin-left: 5px">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-check2-circle" viewBox="0 0 16 16">
+                    <path
+                      d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                    <path
+                      d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                  </svg>
+                  Thêm tin
                 </button>
               </div>
             </form>
@@ -80,5 +152,5 @@
     </div>
   </div>
 </section>
-
 </body>
+

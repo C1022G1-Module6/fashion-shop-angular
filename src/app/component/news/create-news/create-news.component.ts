@@ -16,8 +16,8 @@ import Swal from 'sweetalert2';
 export class CreateNewsComponent implements OnInit {
   @ViewChild('uploadFile', {static: true}) public avatarDom: ElementRef | undefined;
   selectedImage: any = null;
-  regexNameImg = '\.(jpg|png)$/i';
-  arrayPicture = 'https://archinect.imgix.net/uploads/ug/ugwcu31z3fknhdkn.jpg?fit=crop&auto=compress%2Cformat&w=1200';
+  mb = 0;
+  arrayPicture = 'https://chim-chimneyinc.com/wp-content/uploads/2019/12/GettyImages-1128826884.jpg';
   formCreateNews: FormGroup = new FormGroup({
     title: new FormControl('',
       [Validators.required, Validators.minLength(10), Validators.maxLength(200)]
@@ -27,15 +27,17 @@ export class CreateNewsComponent implements OnInit {
     ),
     img: new FormControl(),
     nameImg: new FormControl('',
-      [Validators.required]
+      [Validators.required, Validators.pattern(/\.(png|jpg)$/i)]
     ),
+    mb: new FormControl(''),
     employee: new FormControl()
   });
 
   errCreate: any = {
     errTitle: '',
     errNameImg: '',
-    errContent: ''
+    errContent: '',
+    errMb: ''
   };
 
 
@@ -58,6 +60,17 @@ export class CreateNewsComponent implements OnInit {
     console.log(`Form submit, model: ${JSON.stringify(this.model)}`);
   }
 
+  // onFileSelected(event): void {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.arrayPicture = reader.result as string;
+  //     };
+  //   }
+  // }
+
   submit() {
     if (this.selectedImage != null) {
       const filePath = this.selectedImage.name;
@@ -71,44 +84,56 @@ export class CreateNewsComponent implements OnInit {
     }
   }
 
-
-  uploadFileImg() {
+  uploadFileImg(event: any) {
+    const file: File = event.target.files[0];
+    const fileSizeInBytes = file.size;
+    const fileSizeInMB = fileSizeInBytes / (1024 * 1024);
+    this.mb = fileSizeInMB;
+    console.log('file size: ' + fileSizeInMB + 'MB');
     this.selectedImage = this.avatarDom?.nativeElement.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.arrayPicture = reader.result as string;
+      };
+    }
     this.submit();
   }
 
   createNews() {
-    if (this.formCreateNews.valid) {
-      const news: News = this.formCreateNews.value;
-      news.img = this.arrayPicture;
-      news.employee = {
-        id: 1
-      };
-      console.log(news);
-      this.newsService.addNews(news).subscribe(next => {
-        this.formCreateNews.reset();
-        Swal.fire({
-          icon: 'success',
-          title: 'Thêm mới thành công',
-          showConfirmButton: false,
-          timer: 1500
-        });
-        this.router.navigateByUrl('news/listNews');
-      }, er => {
-        // tslint:disable-next-line:prefer-for-of
-        for (let i = 0; i < er.error.length; i++) {
-          if (er.error[i].field === 'title') {
-            this.errCreate.errTitle = er.error[i].defaultMessage;
-          } else if (er.error[i].field === 'nameImg') {
-            this.errCreate.errNameImg = er.error[i].defaultMessage;
-          } else if (er.error[i].field === 'content') {
-            this.errCreate.errContent = er.error[i].defaultMessage;
-          }
-        }
+    // if (this.formCreateNews.valid) {
+    const news: News = this.formCreateNews.value;
+    news.img = this.arrayPicture;
+    news.employee = {
+      id: 1
+    };
+    news.title = news.title.trim();
+    news.mb = this.mb;
+    console.log(news);
+    this.newsService.addNews(news).subscribe(next => {
+      this.formCreateNews.reset();
+      Swal.fire({
+        icon: 'success',
+        title: 'Thêm mới thành công',
+        showConfirmButton: false,
+        timer: 1500
       });
-    }
-
-
+      this.router.navigateByUrl('news/listNews');
+    }, er => {
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < er.error.length; i++) {
+        if (er.error[i].field === 'title') {
+          this.errCreate.errTitle = er.error[i].defaultMessage;
+        } else if (er.error[i].field === 'nameImg') {
+          this.errCreate.errNameImg = er.error[i].defaultMessage;
+        } else if (er.error[i].field === 'content') {
+          this.errCreate.errContent = er.error[i].defaultMessage;
+        }
+      }
+    });
   }
 
+  // }
 }
