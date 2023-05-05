@@ -48,7 +48,7 @@ export class BodyComponent implements OnInit {
   }
 
   search(name: string) {
-    if (name.length === 0) {
+    if (this.productList.length === 0) {
       Swal.fire({
         position: 'center',
         icon: 'warning',
