@@ -17,6 +17,7 @@ export class ListNewsComponent implements OnInit {
   size = 0;
   titleSearch = '';
   teamPage!: ProjectJson1;
+  isLogin?:false;
 
 
 

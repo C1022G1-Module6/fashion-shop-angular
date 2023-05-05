@@ -5,6 +5,8 @@ export interface News {
   content?: string;
   img?: string;
   nameImg: string;
+  mb?:number;
   title?: string;
   employee?: Employee;
+
 }

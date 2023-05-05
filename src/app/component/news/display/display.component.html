@@ -9,6 +9,7 @@
         crossorigin="anonymous">
 </head>
 <style>
+
   .an {
     display: block;
     display: -webkit-box;
@@ -40,7 +41,7 @@
 <header class="container-fluid bg-light">
   <div class="row">
     <div class="col-12 col-md-6 p-3">
-      <h2>{{news.title}}</h2>
+      <h2 style="text-transform: uppercase">{{news.title}}</h2>
     </div>
     <div class="col-12 col-md-6 p-3 text-md-end">
       <!--      <a href="#">Log In</a>-->
@@ -52,11 +53,13 @@
   <div class="row">
     <div class="col-md-8">
       <div class="card mb-3">
-        <img src="{{news.img}}" class="card-img-top img1" alt="...">
+        <img src="{{news.img}}" class="card-img-top"  alt="...">
         <div class="card-body" style="position: relative;width: 100%">
           <p  class="card-text" style="height:100%; width:100%" [innerHTML]="news.content"></p>
         </div>
       </div>
+<!--      <img  src="https://i.pinimg.com/474x/74/e3/49/74e349b2fd1a50c61cdc3e57f6e31440.jpg" alt="">-->
+<!--      <div [innerHTML]="news.content"></div>-->
     </div>
     <div class="col-md-4">
       <h1>Bài viết liên quan</h1>
