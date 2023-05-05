@@ -16,49 +16,60 @@
             <form [formGroup]="formCreateNews" class="px-md-4 ">
               <div class="form-group">
                 <label for="name" class="h6">Tiêu đề(<span style="color: red">*</span>):</label>
-                <div class="input-group">
-                  <input formControlName="title" type="text" id="name" class="form-control" name="name">
-                </div>
+                <input formControlName="title" type="text" id="name" class="form-control" name="name">
+                <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('required') && formCreateNews.controls.title.touched">Nhập tiêu đề</p>
+                <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('minlength') && formCreateNews.controls.title.touched">Tiêu đề ít nhất 10 kí tự</p>
+                <p style="color: red" *ngIf="formCreateNews.controls.title.hasError('maxlength') && formCreateNews.controls.title.touched">Tiêu đề không quá 100 kí tự</p>
+                <p style="color: red">{{errCreate.errTitle}}</p>
               </div>
 
               <div style="height: 100px" class="row mt-3 form-group">
                 <div class="col-8">
                   <label for="score" class="h6">Hình ảnh(<span style="color: red">*</span>):</label>
-                  <div class=" input-group">
-                    <input #uploadFile (change)="uploadFileImg()" type="file" id="score" class="form-control" name="score">
-                  </div>
+
+                  <input #uploadFile (change)="uploadFileImg()" formControlName="nameImg" type="file" id="score" class="form-control"
+                         name="score">
+                  <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('required') && formCreateNews.controls.nameImg.touched">Chọn ảnh</p>
+                  <p style="color: red" *ngIf="formCreateNews.controls.nameImg.hasError('pattern') && formCreateNews.controls.nameImg.touched">Ảnh sai định dạng</p>
+                  <p style="color: red">{{errCreate.errNameImg}}</p>
+
                 </div>
-                <div class="col-4">
-                  <img style="height: 30%; height: 15%"
-                       [src]="arrayPicture"
-                       alt="">
+                <div class="col-4" style="position: relative">
+                  <div style="width: 10rem;height: 6rem;position: absolute" class="input-group">
+                    <img style="width: 100%; height: 100%;position: absolute"
+                         [src]="arrayPicture"
+                         alt="">
+                  </div>
                 </div>
               </div>
 
               <div class="mt-3 form-group">
                 <label class="h6">Nội dung(<span style="color: red">*</span>):</label>
                 <div class="input-group">
-<!--                  <textarea name="editor1" cols="70" rows="10"></textarea>-->
+                  <!--                  <textarea name="editor1" cols="70" rows="10"></textarea>-->
                   <ckeditor formControlName="content"
-                    #editor
-                    id="description"
-                    name="description"
-                    type="divarea">
+                            #editor
+                            id="description"
+                            name="description"
+                            type="divarea">
                   </ckeditor>
+                  <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('required') && formCreateNews.controls.content.touched">Nhập nội dung</p>
+                  <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('minlength') && formCreateNews.controls.content.touched">Nội dung ít nhất 100 kí tự</p>
+                  <p style="color: red" *ngIf="formCreateNews.controls.content.hasError('maxlength') && formCreateNews.controls.content.touched">Nội dung không quá 1000 kí tự</p>
+                  <p style="color: red">{{errCreate.errContent}}</p>
+
                 </div>
               </div>
 
-
-              ​
-              <div class="d-flex justify-content-center">
-                <button
+              <div class="d-flex justify-content-center m-2">
+                <button routerLink="/news/listNews"
                   type="button"
                   class="btn btn-secondary"
                   style="margin-right: 5px"
                 >
                   <i class="bi bi-x-circle"></i>Hủy
                 </button>
-                <button (click)="createNews()" type="submit" class="btn btn-primary" style="margin-left: 5px">
+                <button [disabled]="!formCreateNews.valid" (click)="createNews()" type="submit" class="btn btn-primary" style="margin-left: 5px">
                   <i class="bi bi-check2-circle"></i>Thêm tin
                 </button>
               </div>

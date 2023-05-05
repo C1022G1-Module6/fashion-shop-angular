@@ -15,37 +15,40 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import {HomeModule} from "./component/home/home.module";
-import {FooterComponent} from "./component/home/footer/footer.component";
-import {BodyComponent} from "./component/home/body/body.component";
-import {HeaderComponent} from "./component/home/header/header.component";
+import {HomeModule} from './component/home/home.module';
+import {FooterComponent} from './component/home/footer/footer.component';
+import {BodyComponent} from './component/home/body/body.component';
+import {HeaderComponent} from './component/home/header/header.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    BodyComponent,
-    FooterComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CKEditorModule,
-    CustomerModule,
-    DataEntryModule,
-    EmployeeModule,
-    InvoiceModule,
-    NewsModule,
-    HomeModule,
-    NotificationModule,
-    ProductModule,
-    HttpClientModule,
-    AngularFireStorageModule,
-    AngularFireModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        BodyComponent,
+        FooterComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CKEditorModule,
+        CustomerModule,
+        DataEntryModule,
+        EmployeeModule,
+        InvoiceModule,
+        NewsModule,
+        HomeModule,
+        NotificationModule,
+        ProductModule,
+        HttpClientModule,
+        AngularFireStorageModule,
+        AngularFireModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+    ],
+    providers: [],
+    exports: [
+        HeaderComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NewsService} from '../../../service/news.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {News} from '../../../model/news/news';
+import {INewsDTO} from '../../../dto/i-news-d-t-o';
 
 @Component({
   selector: 'app-display',
@@ -9,7 +10,8 @@ import {News} from '../../../model/news/news';
   styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit {
-  news: News = {};
+  listRelatedNews: INewsDTO [] = [];
+  news: News;
   linkImg: string;
 
   constructor(private newsService: NewsService,
@@ -19,6 +21,7 @@ export class DisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNews();
+    this.getAllRelatedNews();
   }
 
   getNews() {
@@ -31,5 +34,12 @@ export class DisplayComponent implements OnInit {
       });
     });
   }
+
+  getAllRelatedNews() {
+    this.newsService.getAllRelatedNews().subscribe(next => {
+      this.listRelatedNews = next;
+    });
+  }
+
 
 }

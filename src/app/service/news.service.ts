@@ -24,4 +24,9 @@ export class NewsService {
   detailNews(idNews: number): Observable<any> {
     return this.httpClient.get<INewsDTO>('http://localhost:8080/api-news/detailNews?idNews=' + idNews);
   }
+
+  getAllRelatedNews():Observable<any>{
+    return this.httpClient.get<INewsDTO[]>('http://localhost:8080/api-news/relatedNews');
+  }
+
 }
