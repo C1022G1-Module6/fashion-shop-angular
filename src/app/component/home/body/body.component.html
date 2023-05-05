@@ -1,7 +1,8 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <a href="https://yody.vn/Combo-than-thanh"> <img src="https://bizweb.dktcdn.net/100/438/408/themes/904142/assets/ldp_banner-25.jpg?1681801559897"   class="d-block w-100" alt="..."></a>
+        <a href="https://yody.vn/Combo-than-thanh"> <img src="https://bizweb.dktcdn.net/100/438/408/themes/904142/assets/slider_3.jpg?1683182814972"   class="d-block w-100" alt="..."></a>
+
     </div>
     <div class="carousel-item">
       <a href="https://fm.com.vn/sieu-sale"><img src="https://bizweb.dktcdn.net/100/438/408/files/polopc.jpg?v=1657939410701" class="d-block w-100" alt="..."></a>
@@ -27,7 +28,7 @@
     </div>
 
     <div class="navbar-brand d-flex">
-      <input #name (change)="search(name.value)" class="form-control me-2" type="search" placeholder="Tìm kiếm theo tên sản phẩm"
+      <input #name (change)="search(name.value)" class="form-control me-2" type="search" placeholder="Tìm kiếm tên sản phẩm"
              aria-label="Search">
       <button (click)="search(name.value)" class="btn btn-outline-success" type="submit">Tìm kiếm
       </button>
@@ -38,15 +39,15 @@
   <nav class="navbar">
     <div class=" container py-5">
       <div class="navbar-brand wrapper">
-        <button style="margin: 1px; margin-left: 50px" type="button"  *ngFor="let item of productTypeList" (click)="search(item.name)">
+        <button style="margin-bottom: 5px; margin-left: 50px" type="button"  *ngFor="let item of productTypeList" (click)="search(item.name)">
           <a *ngIf="item.id == 1" ><img src="../../../../assets/img/8339c19d-1fe8-43fc-8a0d-474c9de17ca7.png" height="106" width="172"/></a>
           <a *ngIf="item.id == 2" ><img src="../../../../assets/img/342843e8-9b96-486c-a45b-55884d0fcd92.png" height="106" width="172"/></a>
-          <a *ngIf="item.id == 3" ><img src="../../../../assets/img/tải xuống (1).jpg" height="106" width="150"/></a>
-          <a *ngIf="item.id == 4" ><img src="../../../../assets/img/Capture32887.jpg" height="106" width="150"/></a>
-          <a *ngIf="item.id == 5" ><img src="../../../../assets/img/tải xuống (2).jpg" height="106" width="150"/></a>
-          <a *ngIf="item.id == 6" ><img src="../../../../assets/img/hb0181_cre_1000x1000_4536849088.jpg" height="106" width="150"/></a>
-          <a *ngIf="item.id == 7" ><img src="../../../../assets/img/mu-coi-bo-doi-4_252e3e575f14450ca75f80daee483d1b_master.jpg" height="106" width="150"/></a>
-          <a *ngIf="item.id == 8" ><img src="../../../../assets/img/75RoLV_simg_b5529c_250x250_maxb.jpg" height="106" width="150"/></a>
+          <a *ngIf="item.id == 3" ><img src="../../../../assets/img/bd5d9f39-2571-4ddc-9d57-5bbbafcc34c9.png" height="106" width="150"/></a>
+          <a *ngIf="item.id == 4" ><img src="../../../../assets/img/72c29cbe-5cdb-4853-9d38-e1079a86e35e.png" height="106" width="150"/></a>
+          <a *ngIf="item.id == 5" ><img src="../../../../assets/img/75c4fe5f-e6ea-4a12-91a2-f26afaea6ef8.png" height="106" width="150"/></a>
+          <a *ngIf="item.id == 6" ><img src="../../../../assets/img/3bbb07ba-875a-4e73-978d-b1ad0df666c9.png" height="106" width="150"/></a>
+          <a *ngIf="item.id == 7" ><img src="../../../../assets/img/909fa1d0-6b99-4747-857e-d5e18c3270ad.png" height="106" width="150"/></a>
+          <a *ngIf="item.id == 8" ><img src="../../../../assets/img/d083eb5e-0b3f-4138-8676-007768eae0ea.png" height="106" width="150"/></a>
         </button>
       </div>
     </div>
@@ -60,7 +61,7 @@
         <div class="product-item">
           <div class="product-top">
             <a href="" class="product-thumb">
-              <img [src]="product.img">
+              <img [src]="'../../../../assets/' + product.img">
             </a>
           </div>
         </div>
@@ -70,7 +71,9 @@
             style="background-color: lightgray;color: #007bff;font-weight: 600"
             *ngIf="product.name.length > 20">.....</span></a>
           <div class="product-price">{{product.sellingPrice | currency: "VND"}}</div>
-          <div class="product-price">{{product.code}}</div>
+  <!--
+            <div class="product-price">{{product.}}</div>
+  -->
         </div>
       </li>
     </ul>
