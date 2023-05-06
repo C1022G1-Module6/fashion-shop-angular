@@ -18,6 +18,7 @@ export class BodyComponent implements OnInit {
   page = 1;
   productTypeList: ProductType[] = [];
   teamPage!: ProjectJson;
+  id: number;
 
   constructor(private productService: ProductService,
               private productTypeService: ProductTypeService) {
@@ -34,34 +35,34 @@ export class BodyComponent implements OnInit {
   }
 
   getAll(page: number) {
-    this.productService.getProductALl(this.searchInput, 0, page).subscribe(data => {
-      // @ts-ignore
-      this.productList = data.content;
+    this.productService.getProductALl(this.searchInput,0, page).subscribe(data => {
       console.log(data);
-      // @ts-ignore
-      this.teamPage = data;
+      if (data.length == 0) {
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Không tìm thấy sản phẩm',
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }else {
+        window.scrollTo(700,900)
+        this.productList = data.content;
+        this.teamPage = data;
+      }
     });
+
   }
 
   changePage(page: number) {
+    window.scrollTo(700,900)
     this.getAll(page);
   }
 
   search(name: string) {
-    if (this.productList.length === 0) {
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Không tìm thấy sản phẩm',
-        showConfirmButton: false,
-        timer: 3000
-      });
-    }
     this.page = 0;
     this.searchInput = name;
     this.productList = [];
     this.getAll(this.page);
   }
-
-
 }

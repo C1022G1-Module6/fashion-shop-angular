@@ -45,7 +45,6 @@
 }
 
 .wrapper {
-  max-width: 1170px;
 }
 
 h3 {
@@ -254,6 +253,7 @@ a span {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-left: 25px;
 }
 
 .navbar-brand.wrapper button {
@@ -326,3 +326,32 @@ ul.products li {
   }
 }
 
+/*.jobs .item {
+  background: #eee;
+  border: 1px solid ;
+}
+
+.jobs .item:hover {
+  border: 1px solid #ff2c00;
+}*/
+
+#mask {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 3px solid transparent;
+}
+#mask:hover {
+  border-bottom: 3px solid #ff2c00;
+}
+#outerDiv {
+  display: inline-block;
+  position: relative;
+}
+img {
+  display: block;
+}
